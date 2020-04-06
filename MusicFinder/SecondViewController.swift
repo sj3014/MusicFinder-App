@@ -10,9 +10,17 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    @IBOutlet weak var artistLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    var infoArtist:String = ""
+    var infoTitle:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        artistLabel.text = infoArtist
+        titleLabel.text = infoTitle
         // Do any additional setup after loading the view.
     }
     

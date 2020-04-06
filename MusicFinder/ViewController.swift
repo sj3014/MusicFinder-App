@@ -12,7 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var lyricField: UITextField!
     
-    var results = [Detail]()
+    var infoArtist = ""
+    var infoTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +48,20 @@ class ViewController: UIViewController {
         request.getMusic { [weak self] result in
             switch result {
             case .success(let res):
-                self?.results = res
+                self?.infoArtist = res[0].artist
+                self?.infoTitle = res[0].title
             case .failure(let error):
                 print(error)
             }
             
         }
-        print(results[0])
-        
+  //      performSegue(withIdentifier: "showResult", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! SecondViewController
+        vc.infoArtist = self.infoArtist
+        vc.infoTitle = self.infoTitle
     }
     
 }
